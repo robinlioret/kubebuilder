@@ -35,6 +35,7 @@ import (
 	grafanav1alpha "sigs.k8s.io/kubebuilder/v4/pkg/plugins/optional/grafana/v1alpha"
 	helmv1alpha "sigs.k8s.io/kubebuilder/v4/pkg/plugins/optional/helm/v1alpha"
 	helmv2alpha "sigs.k8s.io/kubebuilder/v4/pkg/plugins/optional/helm/v2alpha"
+	helmv3alpha "sigs.k8s.io/kubebuilder/v4/pkg/plugins/optional/helm/v3alpha"
 )
 
 // Generate store the required info for the command
@@ -667,9 +668,16 @@ func kubebuilderHelmEdit(isV2Alpha bool) error {
 // the plugin chain or configuration.
 func hasHelmPlugin(cfg store.Store) (bool, bool) {
 	var pluginConfig map[string]any
+	var err error
 
-	// Check for v2alpha first (preferred)
-	err := cfg.Config().DecodePluginConfig(plugin.KeyFor(helmv2alpha.Plugin{}), &pluginConfig)
+	// Check for v3alpha first (preferred)
+	err = cfg.Config().DecodePluginConfig(plugin.KeyFor(helmv3alpha.Plugin{}), &pluginConfig)
+	if err == nil {
+		return true, true // has helm plugin, is v2alpha
+	}
+
+	// Check for v2alpha
+	err = cfg.Config().DecodePluginConfig(plugin.KeyFor(helmv2alpha.Plugin{}), &pluginConfig)
 	if err == nil {
 		return true, true // has helm plugin, is v2alpha
 	}

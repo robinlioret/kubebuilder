@@ -744,6 +744,14 @@ var _ = Describe("generate: kubebuilder", func() {
 })
 
 var _ = Describe("generate: hasHelmPlugin", func() {
+	It("returns true if v3-alpha plugin present", func() {
+		cfg := &fakeConfig{plugins: map[string]any{"helm.kubebuilder.io/v3-alpha": true}}
+		store := &fakeStore{cfg: cfg}
+		hasPlugin, isV3Alpha := hasHelmPlugin(store)
+		Expect(hasPlugin).To(BeTrue())
+		Expect(isV3Alpha).To(BeTrue())
+	})
+
 	It("returns true if v2-alpha plugin present", func() {
 		cfg := &fakeConfig{plugins: map[string]any{"helm.kubebuilder.io/v2-alpha": true}}
 		store := &fakeStore{cfg: cfg}
