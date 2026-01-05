@@ -1,5 +1,5 @@
 /*
-Copyright 2025 The Kubernetes Authors.
+Copyright 2026 The Kubernetes Authors.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package github
+package templates
 
 import (
 	"path/filepath"
@@ -22,16 +22,16 @@ import (
 	"sigs.k8s.io/kubebuilder/v4/pkg/machinery"
 )
 
-var _ machinery.Template = &HelmChartCI{}
+var _ machinery.Template = &HelmGithubCITestChart{}
 
-// HelmChartCI scaffolds the GitHub Action for testing Helm charts
-type HelmChartCI struct {
+// HelmGithubCITestChart scaffolds the GitHub Action for testing Helm charts
+type HelmGithubCITestChart struct {
 	machinery.TemplateMixin
 	machinery.ProjectNameMixin
 }
 
 // SetTemplateDefaults implements machinery.Template
-func (f *HelmChartCI) SetTemplateDefaults() error {
+func (f *HelmGithubCITestChart) SetTemplateDefaults() error {
 	if f.Path == "" {
 		f.Path = filepath.Join(".github", "workflows", "test-chart.yml")
 	}

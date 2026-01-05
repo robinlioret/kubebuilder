@@ -1,5 +1,5 @@
 /*
-Copyright 2025 The Kubernetes Authors.
+Copyright 2026 The Kubernetes Authors.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ import (
 	"sigs.k8s.io/kubebuilder/v4/pkg/config"
 	"sigs.k8s.io/kubebuilder/v4/pkg/machinery"
 	"sigs.k8s.io/kubebuilder/v4/pkg/plugins"
-	"sigs.k8s.io/kubebuilder/v4/pkg/plugins/optional/helm/v3alpha/scaffolds/internal/github"
+	"sigs.k8s.io/kubebuilder/v4/pkg/plugins/optional/helm/v3alpha/scaffolds/internal/templates"
 )
 
 const (
@@ -86,15 +86,18 @@ func (s *editInstallerScaffolder) Scaffold() error {
 	// to test
 	fmt.Println("Resources", len(resources))
 
-	// Create a scaffold for the files
+	// Create scaffold for standard Helm chart files
 	scaffold := machinery.NewScaffold(s.fs, machinery.WithConfig(s.config))
 
-	// Defined the files to generate
+	// Define the standard Helm chart files to generate
 	chartFiles := []machinery.Builder{
-		&github.HelmChartCI{},
+		&templates.HelmGithubCITestChart{},             // GitHub Actions workflow for chart testing
+		&templates.HelmChart{OutputDir: s.outputDir},   // Chart.yaml metadata
+		&templates.HelmIgnore{OutputDir: s.outputDir},  // .helmignore file
+		&templates.HelmHelpers{OutputDir: s.outputDir}, // _helpers.tpl template functions
 	}
 
-	// Generate files
+	// Generate standard Helm chart files
 	if err = scaffold.Execute(chartFiles...); err != nil {
 		return fmt.Errorf("failed to generate Helm chart files: %w", err)
 	}
