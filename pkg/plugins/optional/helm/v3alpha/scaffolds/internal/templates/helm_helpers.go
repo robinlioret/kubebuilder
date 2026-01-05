@@ -54,7 +54,7 @@ const helmHelpersTemplate = `{{` + "`" + `{{/*
 Chart name based on project name.
 Truncated to 63 characters for Kubernetes compatibility.
 */}}` + "`" + `}}
-{{` + "`" + `{{- define "chart.name" -}}` + "`" + `}}
+{{` + "`" + `{{- define "` + "`" + `}} {{ .ProjectName }} {{` + "`" + `chart.name" -}}` + "`" + `}}
 {{` + "`" + `{{- if .Chart }}` + "`" + `}}
   {{` + "`" + `{{- if .Chart.Name }}` + "`" + `}}
     {{` + "`" + `{{- .Chart.Name | trunc 63 | trimSuffix "-" }}` + "`" + `}}
