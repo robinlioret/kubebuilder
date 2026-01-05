@@ -391,7 +391,7 @@ After AI ports your code:
 
 <h1>If You Have a Helm Chart</h1>
 
-If you had a Helm chart to distribute your project, you may want to consider regenerate with the [helm/v2-alpha plugin](../plugins/available/helm-v2-alpha.md)
+If you had a Helm chart to distribute your project, you may want to consider regenerate with the [helm/v3-alpha plugin](../plugins/available/helm-v3-alpha.md)
 and then applying your customizations on top.
 
 </aside>

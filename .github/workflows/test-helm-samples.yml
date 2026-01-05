@@ -38,11 +38,11 @@ jobs:
           go mod tidy
           make all
 
-      - name: Rebuild installer and regenerate Helm chart (v2-alpha)
+      - name: Rebuild installer and regenerate Helm chart (v3-alpha)
         working-directory: testdata/project-v4-with-plugins
         run: |
           make build-installer
-          ../../bin/kubebuilder edit --plugins=helm/v2-alpha --force
+          ../../bin/kubebuilder edit --plugins=helm/v3-alpha --force
 
       - name: Install the latest version of kind
         run: |
@@ -120,7 +120,7 @@ jobs:
   # Command to use to scaffold project without creating webhooks and so no need to install cert manager:
   # - kubebuilder init
   # - kubebuilder create api --group example.com --version v1 --kind App --controller=true --resource=true
-  # - kubebuilder edit --plugins=helm.kubebuilder.io/v2-alpha
+  # - kubebuilder edit --plugins=helm.kubebuilder.io/v3-alpha
   test-helm-no-webhooks:
     runs-on: ubuntu-latest
     if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository

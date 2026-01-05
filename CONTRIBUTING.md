@@ -168,7 +168,7 @@ If the PR is "plugin" scoped, you may also append the responding plugin names in
 [For instance](https://github.com/kubernetes-sigs/kubebuilder/commit/0b36d0c4021bbf52f29d5a990157466761ec180c):
 
 ```
-🐛 (kustomize/v2-alpha): Fix typo issue in the labels added to the manifests
+🐛 (kustomize/v3-alpha): Fix typo issue in the labels added to the manifests
 ```
 
 Individual commits should not be tagged separately, but will generally be

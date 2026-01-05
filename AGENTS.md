@@ -146,7 +146,7 @@ make test              # CI aggregate (all of above + license)
 
 **Examples:**
 ```
-✨ (helm/v2-alpha): Add chart generation for cluster-scoped resources
+✨ (helm/v3-alpha): Add chart generation for cluster-scoped resources
 🐛: Fix project creation failure when GOBIN is unset
 📖: Update migration guide for Go 1.25 compatibility
 ```
@@ -237,7 +237,7 @@ After `make install`:
 kubebuilder init --domain example.com --repo github.com/example/myproject
 kubebuilder create api --group batch --version v1 --kind CronJob
 kubebuilder create webhook --group batch --version v1 --kind CronJob
-kubebuilder edit --plugins=helm/v2-alpha
+kubebuilder edit --plugins=helm/v3-alpha
 kubebuilder alpha generate    # Experimental: generate from PROJECT file
 kubebuilder alpha update      # Experimental: update to latest plugin versions
 ```

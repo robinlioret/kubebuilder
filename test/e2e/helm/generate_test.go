@@ -33,7 +33,7 @@ import (
 	"sigs.k8s.io/kubebuilder/v4/test/e2e/utils"
 )
 
-var _ = Describe("Helm v2-alpha Plugin", func() {
+var _ = Describe("Helm v3-alpha Plugin", func() {
 	var kbc *utils.TestContext
 
 	BeforeEach(func() {
@@ -58,7 +58,7 @@ var _ = Describe("Helm v2-alpha Plugin", func() {
 			By("building installer manifest")
 			Expect(kbc.Make("build-installer")).To(Succeed())
 
-			By("applying helm v2-alpha plugin")
+			By("applying helm v3-alpha plugin")
 			err := kbc.EditHelmPlugin()
 			Expect(err).NotTo(HaveOccurred())
 
@@ -81,7 +81,7 @@ var _ = Describe("Helm v2-alpha Plugin", func() {
 			By("building installer manifest with webhooks")
 			Expect(kbc.Make("build-installer")).To(Succeed())
 
-			By("applying helm v2-alpha plugin")
+			By("applying helm v3-alpha plugin")
 			err := kbc.EditHelmPlugin()
 			Expect(err).NotTo(HaveOccurred())
 
@@ -99,14 +99,14 @@ var _ = Describe("Helm v2-alpha Plugin", func() {
 			Expect(kbc.Make("build-installer")).To(Succeed())
 
 			By("applying plugin with custom output directory")
-			err := kbc.Edit("--plugins", "helm.kubebuilder.io/v2-alpha", "--output-dir", "custom-charts")
+			err := kbc.Edit("--plugins", "helm.kubebuilder.io/v3-alpha", "--output-dir", "custom-charts")
 			Expect(err).NotTo(HaveOccurred())
 
 			By("verifying chart is generated in custom directory")
 			validateCustomOutputDir(kbc, "custom-charts")
 
 			By("re-running plugin without --force should preserve existing files")
-			err = kbc.Edit("--plugins", "helm.kubebuilder.io/v2-alpha", "--output-dir", "custom-charts")
+			err = kbc.Edit("--plugins", "helm.kubebuilder.io/v3-alpha", "--output-dir", "custom-charts")
 			Expect(err).NotTo(HaveOccurred())
 
 			By("verifying files are preserved when not using --force")
@@ -251,7 +251,7 @@ func validatePluginConfig(kbc *utils.TestContext) {
 	projectConfig := getConfigFromProjectFile(projectPath)
 
 	var helmConfig helmv2alpha.Plugin
-	err := projectConfig.DecodePluginConfig("helm.kubebuilder.io/v2-alpha", &helmConfig)
+	err := projectConfig.DecodePluginConfig("helm.kubebuilder.io/v3-alpha", &helmConfig)
 	Expect(err).NotTo(HaveOccurred())
 }
 

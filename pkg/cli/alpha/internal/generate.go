@@ -413,7 +413,8 @@ func getInitArgs(s store.Store) []string {
 		"go.kubebuilder.io/v3":         "go.kubebuilder.io/v4",
 		"go.kubebuilder.io/v3-alpha":   "go.kubebuilder.io/v4",
 		"go.kubebuilder.io/v2":         "go.kubebuilder.io/v4",
-		"helm.kubebuilder.io/v1-alpha": "helm.kubebuilder.io/v2-alpha",
+		"helm.kubebuilder.io/v1-alpha": "helm.kubebuilder.io/v3-alpha",
+		"helm.kubebuilder.io/v2-alpha": "helm.kubebuilder.io/v3-alpha",
 	}
 
 	// Replace outdated plugins and exit after the first replacement

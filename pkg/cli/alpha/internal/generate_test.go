@@ -353,7 +353,7 @@ var _ = Describe("generate: get-args-helpers", func() {
 			})
 
 			When("helm v1-alpha plugin is used", func() {
-				It("should replace with helm v2-alpha", func() {
+				It("should replace with helm v3-alpha", func() {
 					cfg := &fakeConfig{
 						pluginChain: []string{"go.kubebuilder.io/v4", "helm.kubebuilder.io/v1-alpha"},
 						domain:      "foo.com",
@@ -361,9 +361,24 @@ var _ = Describe("generate: get-args-helpers", func() {
 					}
 					store := &fakeStore{cfg: cfg}
 					args := getInitArgs(store)
-					Expect(args).To(ContainElements("--plugins", ContainSubstring("helm.kubebuilder.io/v2-alpha"),
+					Expect(args).To(ContainElements("--plugins", ContainSubstring("helm.kubebuilder.io/v3-alpha"),
 						"--domain", "foo.com", "--repo", "bar"))
 					Expect(args).NotTo(ContainElement(ContainSubstring("helm.kubebuilder.io/v1-alpha")))
+				})
+			})
+
+			When("helm v2-alpha plugin is used", func() {
+				It("should replace with helm v3-alpha", func() {
+					cfg := &fakeConfig{
+						pluginChain: []string{"go.kubebuilder.io/v4", "helm.kubebuilder.io/v2-alpha"},
+						domain:      "foo.com",
+						repo:        "bar",
+					}
+					store := &fakeStore{cfg: cfg}
+					args := getInitArgs(store)
+					Expect(args).To(ContainElements("--plugins", ContainSubstring("helm.kubebuilder.io/v3-alpha"),
+						"--domain", "foo.com", "--repo", "bar"))
+					Expect(args).NotTo(ContainElement(ContainSubstring("helm.kubebuilder.io/v2-alpha")))
 				})
 			})
 		})

@@ -54,6 +54,6 @@ func (p Plugin) GetEditSubcommand() plugin.EditSubcommand { return &p.editSubcom
 
 // DeprecationWarning define the deprecation message or return empty when plugin is not deprecated
 func (p Plugin) DeprecationWarning() string {
-	return "helm/v1-alpha plugin is deprecated, use helm/v2-alpha instead which " +
+	return "helm/v1-alpha plugin is deprecated, use helm/v3-alpha instead which " +
 		"provides dynamic Helm chart generation from kustomize output"
 }

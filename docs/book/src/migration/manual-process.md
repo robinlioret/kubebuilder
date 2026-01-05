@@ -680,10 +680,10 @@ Deploy to a test cluster (e.g. [kind][kind-doc]) and verify the changes (i.e. va
 
 <h1>If You Have a Helm Chart</h1>
 
-If you had a Helm chart to distribute your project, you may want to regenerate it with the [helm/v2-alpha plugin](../plugins/available/helm-v2-alpha.md), then apply your customizations.
+If you had a Helm chart to distribute your project, you may want to regenerate it with the [helm/v3-alpha plugin](../plugins/available/helm-v3-alpha.md), then apply your customizations.
 
 ```bash
-kubebuilder edit --plugins=helm/v2-alpha
+kubebuilder edit --plugins=helm/v3-alpha
 ```
 
 Compare your backup's `chart/values.yaml` and custom templates with the newly generated chart, and apply your customizations and ensure that all is still working

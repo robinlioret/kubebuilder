@@ -60,9 +60,9 @@ var _ = Describe("Plugin", func() {
 	})
 
 	Context("DeprecationWarning", func() {
-		It("should return empty string since v2-alpha is not deprecated", func() {
+		It("should return a non-empty string since v2-alpha is deprecated", func() {
 			warning := p.DeprecationWarning()
-			Expect(warning).To(BeEmpty())
+			Expect(warning).NotTo(BeEmpty())
 		})
 	})
 })

@@ -251,13 +251,13 @@ kubectl apply -f https://raw.githubusercontent.com/<org>/<repo>/<tag>/dist/insta
 ### Option 2: Helm Chart
 
 ```bash
-kubebuilder edit --plugins=helm/v2-alpha  # One-time, generates dist/chart/
+kubebuilder edit --plugins=helm/v3-alpha  # One-time, generates dist/chart/
 # Users install: helm install my-release ./dist/chart/ --namespace <ns> --create-namespace
 ```
 
 **Important:** If you add webhooks or modify manifests after initial chart generation:
 1. Backup any customizations in `dist/chart/values.yaml` and `dist/chart/manager/manager.yaml`
-2. Re-run: `kubebuilder edit --plugins=helm/v2-alpha --force`
+2. Re-run: `kubebuilder edit --plugins=helm/v3-alpha --force`
 3. Manually restore your custom values from the backup
 
 ### Publish Container Image

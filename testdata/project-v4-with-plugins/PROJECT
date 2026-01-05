@@ -27,7 +27,7 @@ plugins:
         image: busybox:1.36.1
       version: v1alpha1
   grafana.kubebuilder.io/v1-alpha: {}
-  helm.kubebuilder.io/v2-alpha:
+  helm.kubebuilder.io/v3-alpha:
     manifests: dist/install.yaml
     output: dist
 projectName: project-v4-with-plugins

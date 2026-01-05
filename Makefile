@@ -103,11 +103,11 @@ generate-charts: build ## Re-generate the helm chart testdata and docs samples
 	rm -rf docs/book/src/cronjob-tutorial/testdata/project/dist/chart
 	rm -rf docs/book/src/multiversion-tutorial/testdata/project/dist/chart
 
-	# Generate helm charts from kustomize manifests using v2-alpha plugin
-	(cd testdata/project-v4-with-plugins && make build-installer && ../../bin/kubebuilder edit --plugins=helm/v2-alpha)
-	(cd docs/book/src/getting-started/testdata/project && make build-installer && ../../../../../../bin/kubebuilder edit --plugins=helm/v2-alpha)
-	(cd docs/book/src/cronjob-tutorial/testdata/project && make build-installer && ../../../../../../bin/kubebuilder edit --plugins=helm/v2-alpha)
-	(cd docs/book/src/multiversion-tutorial/testdata/project && make build-installer && ../../../../../../bin/kubebuilder edit --plugins=helm/v2-alpha)
+	# Generate helm charts from kustomize manifests using v3-alpha plugin
+	(cd testdata/project-v4-with-plugins && make build-installer && ../../bin/kubebuilder edit --plugins=helm/v3-alpha)
+	(cd docs/book/src/getting-started/testdata/project && make build-installer && ../../../../../../bin/kubebuilder edit --plugins=helm/v3-alpha)
+	(cd docs/book/src/cronjob-tutorial/testdata/project && make build-installer && ../../../../../../bin/kubebuilder edit --plugins=helm/v3-alpha)
+	(cd docs/book/src/multiversion-tutorial/testdata/project && make build-installer && ../../../../../../bin/kubebuilder edit --plugins=helm/v3-alpha)
 
 .PHONY: check-docs
 check-docs: ## Run the script to ensure that the docs are updated

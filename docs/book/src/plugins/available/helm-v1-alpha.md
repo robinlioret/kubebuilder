@@ -3,9 +3,9 @@
 <aside class="warning">
 <h1> Deprecated Plugin</h1>
 
-The `helm/v1-alpha` plugin is **deprecated**. Please use [`helm/v2-alpha`](./helm-v2-alpha.md) instead.
+The `helm/v1-alpha` and `helm/v2-alpha` plugins is **deprecated**. Please use [`helm/v3-alpha`](./helm-v3-alpha.md) instead.
 
-The v2-alpha version provides:
+The v3-alpha version provides:
 - Dynamic Helm chart generation from kustomize output
 - Better preservation of customizations (env vars, labels, annotations)
 - Organized template structure matching your config/ directory
