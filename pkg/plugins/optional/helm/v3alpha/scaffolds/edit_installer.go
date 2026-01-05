@@ -29,6 +29,7 @@ import (
 	"sigs.k8s.io/kubebuilder/v4/pkg/config"
 	"sigs.k8s.io/kubebuilder/v4/pkg/machinery"
 	"sigs.k8s.io/kubebuilder/v4/pkg/plugins"
+	"sigs.k8s.io/kubebuilder/v4/pkg/plugins/optional/helm/v3alpha/scaffolds/internal/github"
 )
 
 const (
@@ -83,7 +84,20 @@ func (s *editInstallerScaffolder) Scaffold() error {
 	}
 
 	// to test
-	fmt.Println("Ressources", len(resources))
+	fmt.Println("Resources", len(resources))
+
+	// Create a scaffold for the files
+	scaffold := machinery.NewScaffold(s.fs, machinery.WithConfig(s.config))
+
+	// Defined the files to generate
+	chartFiles := []machinery.Builder{
+		&github.HelmChartCI{},
+	}
+
+	// Generate files
+	if err = scaffold.Execute(chartFiles...); err != nil {
+		return fmt.Errorf("failed to generate Helm chart files: %w", err)
+	}
 
 	slog.Info("Helm Chart generation completed successfully")
 	return nil
